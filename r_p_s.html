@@ -1,0 +1,56 @@
+<script>
+    const comp = ["rock", "paper", "scissors"];
+    function computerPlay(){
+        /*returns random number between 0 and 2*/
+        return comp[Math.floor(Math.random() * 3)];
+    }
+    console.log("Welcome to Rock Paper Scissors!");
+    /* Single Round function */
+    function game(){
+        user_count = 0
+        comp_count = 0
+        i = 0
+        while (i != 5){
+            playRound(prompt("Please choose your play: Rock, paper or scissors? "), computerPlay())
+            i += 1
+        }
+        if (user_count == comp_count){
+            return "Tie! Final score: user = " + user_count + ", and computer = " + comp_count
+        }
+        else if (user_count > comp_count){
+            return "You Win! Final score: user = " + user_count + ", and computer = " + comp_count
+        }
+        else{
+            return "You Lose! Final score: user = " + user_count + ", and computer = " + comp_count
+        }
+
+        function playRound(playerSelection, computerSelection){
+            /*
+            make user's input lowercase
+            compare
+            if user and computer input are equal
+                return "equal"
+            elif (user is rock and comp is scissors) or (user is scissors and comp is paper) or (user is paper and comp is rock)
+                return user wins
+            else
+                return computer wins
+            */
+            playerSelection = playerSelection.toLowerCase();
+            if (playerSelection == computerSelection){
+                user_count += 1
+                comp_count += 1
+                console.log("Tie! " + playerSelection + " is the same as " + computerSelection);
+            }
+            else if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "rock")){
+                user_count += 1
+                console.log("You Win! " + playerSelection + " beats " + computerSelection)
+            }
+            else{
+                comp_count += 1
+                console.log("You Lose! " + computerSelection + " beats " + playerSelection)
+            }
+        }
+        
+    }
+    console.log(game());
+</script>
